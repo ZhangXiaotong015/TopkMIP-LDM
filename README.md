@@ -17,6 +17,8 @@ Projection matrix used for FBP reconstruction:
 `bash run_ircadb_trainAE.sh`
 
 ## Conditioning latent diffusion model training
+Our method is built on the implementation of [latent-diffusion](https://github.com/CompVis/latent-diffusion).
+
 `bash run_Abla1st_ircadb_trainLDiff.sh`
 
 ## Inference
@@ -46,3 +48,9 @@ If you use this work, please cite:
   year={2025},
   organization={IEEE}
 }
+```
+
+## Acknowledgement
+
+This work was performed using the compute resources from the Academic Leiden Interdisciplinary Cluster Environment (ALICE) provided by Leiden University.
+
