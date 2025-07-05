@@ -1,0 +1,98 @@
+model:
+  inference_name: Abla1_IRCADBExp_plain_leave1out_F4
+  resume: '/logs_ISBI/Abla1_IRCADBExp_plain_leave1out_F4/checkpoints'
+  outdir: '/model/latent_diffusion/outputs' 
+  inference_interval: 20000 # 20k steps
+  base_learning_rate: 5.0e-05
+  target: ldm.models.diffusion.ddpm.LatentDiffusion
+  params:
+    linear_start: 0.0015
+    linear_end: 0.0195
+    num_timesteps_cond: 1
+    log_every_t: 100 # timesteps in inference
+    modelcheckfreq: 10000 # iterations in training
+    timesteps: 1000
+    parameterization: eps
+    first_stage_key: image
+    cond_stage_key: image
+    image_size: 256
+    channels: 33 #12
+    cond_stage_trainable: true
+    conditioning_key: concat
+    monitor: diff_loss
+    prox_solver_type: none #apgm
+    unet_config:
+      target: ldm.modules.diffusionmodules.openaimodel.UNetModel
+      params:
+        image_size: 256
+        in_channels: 33 #12 # (z+c)
+        cond_channels: 32 #6
+        out_channels: 1 # z==6 # fixed sigma
+        model_channels: 128 # 6*128
+        groups: 1 #6
+        views: 6
+        latent_size: 64
+        attention_resolutions:
+        - 4
+        - 3
+        - 2
+        - 1
+        num_res_blocks: 2
+        channel_mult:
+        - 1
+        - 2
+        - 3
+        - 4
+        num_head_channels: 32
+    first_stage_config:
+      target: ldm.models.autoencoder.AutoencoderKL
+      params:
+        embed_dim: 1 #6
+        ckpt_path: /logs_ISBI/3DIRCADBExp_AE_leave1out_F4/checkpoints/epoch=0140-step=160000.ckpt
+        lossconfig:
+          target: torch.nn.Identity
+        ddconfig:
+          double_z: true
+          z_channels: 1 #6
+          resolution: 256
+          in_channels: 1 #6
+          out_ch: 1 #6
+          ch: 128 # 6*128
+          groups: 1 #6
+          ch_mult:
+          - 1
+          - 2
+          - 4
+          num_res_blocks: 2
+          attn_resolutions:
+          - 16
+          - 8
+          dropout: 0.0
+    cond_stage_config: 
+      target: ldm.modules.encoders.modules.SpatialRescaler
+      # target: ldm.modules.encoders.modules.SpatialRescaler_custom
+      params:
+        n_stages: 2
+        in_channels: 1 #64 #6*32
+        # in_channels: 64
+        out_channels: 1 #6
+        groups: 1 #6
+data:
+  target: main_infer.DataModuleFromConfig
+  params:
+    batch_size: 1
+    num_workers: 6
+    wrap: false
+    test:
+      target: ldm.data.dataset.Dataset3D_diffusion_infer
+      params:
+        name: 'Test'
+        # num_views: 6 # num of views used in inference
+        root_path: '/data/3DircadbNifti_newLiverMask'
+        folder_projCTtopkMIP: 'TrainSeq_ProjCTtopkMIP_6views'
+        folder_projVessel: 'TrainSeq_ProjVessel_6views'
+        fold_num: 5 
+        fold_idx: 4
+        clip_min: 0
+        clip_max: 400
+        fixed_cases_in_trainset: [1,2,3,5,7,9,10,12,13,14,15,17,18,19,20]

@@ -1,0 +1,52 @@
+model:
+  base_learning_rate: 4.5e-06
+  target: ldm.models.autoencoder.AutoencoderKL
+  params:
+    monitor: rec_loss_1st
+    embed_dim: 1 #6
+    modelcheckfreq: 40000 # iterations in training
+    lossconfig:
+      target: ldm.modules.losses.LPIPSWithDiscriminator
+      params:
+        disc_start: 5001
+        kl_weight: 1.0e-06
+        disc_weight: 0.5
+        perceptual_weight: 0
+        disc_in_channels: 1 #32 #6
+    ddconfig:
+      double_z: true
+      z_channels: 1 #6
+      resolution: 256
+      in_channels: 1 #32 #6
+      out_ch: 1 #32 #6
+      ch: 128 # 6*128
+      groups: 1 #6
+      ch_mult:
+      - 1
+      # - 1
+      - 2
+      # - 2
+      - 4
+      # - 4
+      num_res_blocks: 2
+      attn_resolutions:
+      - 16
+      - 8
+      dropout: 0.0
+data:
+  target: main_EnDe.DataModuleFromConfig
+  params:
+    batch_size: 1 # views num will be put on batch dim.
+    num_workers: 6
+    wrap: false
+    train:
+      target: ldm.data.dataset.Dataset3D_EnDe_train
+      params:
+        name: 'Train'
+        root_path: '/data/3DircadbNifti_newLiverMask'
+        folder_projVessel: 'TrainSeq_ProjVessel_6views'
+        fold_num: 5 
+        fold_idx: 0
+        clip_min: 0
+        clip_max: 400
+        fixed_cases_in_trainset: [1,2,3,5,7,9,10,12,13,14,15,17,18,19,20]
