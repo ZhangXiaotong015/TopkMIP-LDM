@@ -8,6 +8,13 @@ cd Dockerfile/topkMIP
 docker build -t image_name:tag .
 bash run.sh
 ```
+You can find the model weights at [this link](https://drive.google.com/drive/folders/1V9NtZingw9XQmFGbGGFOE59vtF6iDeck?usp=drive_link) and download them to ```Dockerfile/topkMIP/model```.
+
+The input is a liver-masked CT volume that has been cropped to the liver region.
+
+The output is a binary liver vessel mask.
+
+**This method does not work well for CT volumes with a low contrast-to-noise ratio (CNR). To handle low-CNR cases, please use our other method, [GATSegDiff](https://github.com/ZhangXiaotong015/GATSegDiff).*
 
 ## Data preparation
 The [3D-IRCADb-01](https://www.ircad.fr/research/data-sets/liver-segmentation-3d-ircadb-01/) dataset was used. To exclude the vena cava from the annotated vessel tree, we reannotated the liver masks and have released them in this repository.
