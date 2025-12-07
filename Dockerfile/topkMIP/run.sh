@@ -16,15 +16,14 @@ mkdir -p "$systemMatrix_root"
 docker run --rm --gpus "device=0" \
            --tmpfs /dev/shm:rw,noexec,nosuid,size=1g \
     --mount type=bind,src="$OUTPUT_DIR",dst=/outputs \
-    --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
-    --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root,readonly \
-    --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root,readonly \
-    --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root,readonly \
-    --mount type=bind,src="$rotMat_root",dst=/rotMat_root,readonly \
-    --mount type=bind,src="$systemMatrix_root",dst=/systemMatrix_root,readonly,consistency=cached \
-    -e base_config=/app/configs/ldm/vessel_seg_256_256_256/Abla1st_inference_IRCADB_F0.yaml \
+    --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root \
+    --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root \
+    --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root \
+    --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root \
+    --mount type=bind,src="$rotMat_root",dst=/rotMat_root \
+    --mount type=bind,src="$systemMatrix_root",dst=/systemMatrix_root,consistency=cached \
     topk_mip:latest \
-    --base "$base_config" \
+    --base /app/configs/ldm/vessel_seg_256_256_256/Abla1st_inference_IRCADB_F0.yaml \
     --CT_root /CT_root \
     --resized_CT_root /resized_CT_root \
     --topkMIP_CT_root /topkMIP_CT_root \
@@ -50,13 +49,12 @@ docker run --rm --gpus "device=0" \
 # docker run -it --rm --gpus "device=0" \
 #            --tmpfs /dev/shm:rw,noexec,nosuid,size=1g \
 #     --mount type=bind,src="$OUTPUT_DIR",dst=/outputs \
-#     --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
-#     --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root,readonly \
-#     --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root,readonly \
-#     --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root,readonly \
-#     --mount type=bind,src="$rotMat_root",dst=/rotMat_root,readonly \
-#     --mount type=bind,src="$systemMatrix_root",dst=/systemMatrix_root,readonly,consistency=cached \
-#     -e base_config=/app/configs/ldm/vessel_seg_256_256_256/Abla1st_inference_IRCADB_F0.yaml \
+#     --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root \
+#     --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root \
+#     --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root \
+#     --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root \
+#     --mount type=bind,src="$rotMat_root",dst=/rotMat_root \
+#     --mount type=bind,src="$systemMatrix_root",dst=/systemMatrix_root,consistency=cached \
 #     topk_mip:latest \
 #     bash
 
