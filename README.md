@@ -1,6 +1,14 @@
 # TopkMIP-LDM
 The official implementation of [Top-K Maximum Intensity Projection Priors for 3D Liver Vessel Segmentation](https://ieeexplore.ieee.org/iel8/10980665/10980666/10980858.pdf).
 
+## Dockerfile
+You can simply build the inference image in a WSL2 environment using the Dockerfile in [Dockerfile/topkMIP](Dockerfile/topkMIP/).
+```
+cd Dockerfile/topkMIP
+docker build -t image_name:tag .
+bash run.sh
+```
+
 ## Data preparation
 The [3D-IRCADb-01](https://www.ircad.fr/research/data-sets/liver-segmentation-3d-ircadb-01/) dataset was used. To exclude the vena cava from the annotated vessel tree, we reannotated the liver masks and have released them in this repository.
 
