@@ -6,6 +6,7 @@ You can simply build the inference image in a WSL2 environment using the Dockerf
 ```
 cd Dockerfile/topkMIP
 docker build -t image_name:tag .
+## In run.sh, replace the src path in '--mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \' with your own data path.
 bash run.sh
 ```
 You can find the model weights at [this link](https://drive.google.com/drive/folders/1V9NtZingw9XQmFGbGGFOE59vtF6iDeck?usp=drive_link) and download them to ```Dockerfile/topkMIP/model```.
