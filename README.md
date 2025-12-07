@@ -5,7 +5,7 @@ The official implementation of [Top-K Maximum Intensity Projection Priors for 3D
 You can simply build the inference image in a WSL2 environment using the Dockerfile in [Dockerfile/topkMIP](Dockerfile/topkMIP/).
 ```
 cd Dockerfile/topkMIP
-docker build -t image_name:tag .
+docker build -t topk_mip:latest .
 ## In run.sh, replace the src path in '--mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \' with your own data path.
 bash run.sh
 ```
