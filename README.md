@@ -3,6 +3,22 @@ The official implementation of [Top-K Maximum Intensity Projection Priors for 3D
 
 ## Dockerfile
 You can simply build the inference image in a WSL2 environment using the Dockerfile in [Dockerfile/topkMIP](Dockerfile/topkMIP/).
+
+Open PowerShell and enter the following command.
+```
+notepad $env:USERPROFILE\.wslconfig
+```
+
+Paste the following commands into the pop-up window.
+```
+[wsl2]
+memory=96GB
+processors=4
+swap=0
+localhostForwarding=true
+```
+
+Run the Dockerfile in WSL2.
 ```
 cd Dockerfile/topkMIP
 docker build -t topk_mip:latest .
