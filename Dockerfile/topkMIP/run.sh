@@ -16,7 +16,7 @@ mkdir -p "$systemMatrix_root"
 docker run --rm --gpus "device=0" \
            --tmpfs /dev/shm:rw,noexec,nosuid,size=1g \
     --mount type=bind,src="$OUTPUT_DIR",dst=/outputs \
-    --mount type=bind,src=/mnt/e/xiaotong/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
+    --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
     --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root,readonly \
     --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root,readonly \
     --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root,readonly \
@@ -50,7 +50,7 @@ docker run --rm --gpus "device=0" \
 # docker run -it --rm --gpus "device=0" \
 #            --tmpfs /dev/shm:rw,noexec,nosuid,size=1g \
 #     --mount type=bind,src="$OUTPUT_DIR",dst=/outputs \
-#     --mount type=bind,src=/mnt/e/xiaotong/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
+#     --mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \
 #     --mount type=bind,src="$resized_CT_root",dst=/resized_CT_root,readonly \
 #     --mount type=bind,src="$topkMIP_CT_root",dst=/topkMIP_CT_root,readonly \
 #     --mount type=bind,src="$batch_topkMIP_CT_root",dst=/batch_topkMIP_CT_root,readonly \
