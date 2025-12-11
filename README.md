@@ -36,8 +36,10 @@ If you have a Docker image built as mentioned above, you can save the Docker ima
 ```
 docker save -o topk_mip.tar topk_mip:latest
 ```
+You can use the bash file in [Apptainer](Apptainer/) to run the inference. 
 ```
-
+cd Apptainer
+bash bash_topkMIP.sh
 ```
 
 ## Data preparation
