@@ -31,6 +31,15 @@ For the complete workflow, the input is a liver-masked CT volume cropped to the 
 
 **This method does not work well for CT volumes with a low contrast-to-noise ratio (CNR). To handle low-CNR cases, please use our other method, [GATSegDiff](https://github.com/ZhangXiaotong015/GATSegDiff).*
 
+## Apptainer/Singularity container system
+If you have a Docker image built as mentioned above, you can save the Docker image to a ```.tar``` file and convert it to a ```SIF``` file, which is compatible with Apptainer.
+```
+docker save -o topk_mip.tar topk_mip:latest
+```
+```
+
+```
+
 ## Data preparation
 The [3D-IRCADb-01](https://www.ircad.fr/research/data-sets/liver-segmentation-3d-ircadb-01/) dataset was used. To exclude the vena cava from the annotated vessel tree, we reannotated the liver masks and have released them in this repository.
 
