@@ -25,7 +25,7 @@ docker build -t topk_mip:latest .
 ## In run.sh, replace the src path in '--mount type=bind,src=/mnt/e/WSL/TestData/LiverVesselSeg/Pre-ablation/Portal,dst=/CT_root,readonly \' with your own data path.
 bash run.sh
 ```
-You can find the model weights at [this link](https://drive.google.com/drive/folders/1V9NtZingw9XQmFGbGGFOE59vtF6iDeck?usp=drive_link) and download them to ```Dockerfile/topkMIP/model```.
+You can find the model weights at [this link](https://drive.google.com/drive/folders/1I8axZT0U4mUli0cDMlGoFD2R9QzRzUXJ?dmr=1&ec=wgc-drive-globalnav-goto) and download them to ```Dockerfile/topkMIP/model```.
 
 For the complete workflow, the input is a liver-masked CT volume cropped to the liver region with a size of (256,256,slices), while the output is a binary mask of the liver vessels.
 
