@@ -41,7 +41,7 @@ For the complete workflow, the input is a liver-masked CT volume cropped to the 
 
 ```/recons/ReconFBP_xxxxx.nii.gz:``` FBP vessel reconstruction based on full-view IPs of the 3D vessel tree.
 
-```/reconsOpt/ReconFBP_xxxxx_optIter_4.nii.gz:```Optimized FBP vessel reconstruction at iteration 4 of the artifact suppression process. (The result is corresponding to ```T``` in )
+```/reconsOpt/ReconFBP_xxxxx_optIter_4.nii.gz:```Optimized FBP vessel reconstruction at iteration 4 of the artifact suppression process. (The result corresponds to ```T``` in formula (4) in the paper.)
 
 ```/reconsOptBinaryPercent98:```
 
