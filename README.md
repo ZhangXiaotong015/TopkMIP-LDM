@@ -37,11 +37,11 @@ For the complete workflow, the input is a liver-masked CT volume cropped to the 
 
 ```/samples/recon_xxxxx_Seqxx.nii.gz:``` Partial-view IPs of the 3D vessel tree. (Output of the green-colored auto-encoder in the paper.)
 
-```/projections/Proj_xxxxx.nii.gz:``` Full-view (180 views) IPs of 3D vessel tree.
+```/projections/Proj_xxxxx.nii.gz:``` Full-view (180 views) IPs of the 3D vessel tree.
 
-```/recons:```
+```/recons/ReconFBP_xxxxx.nii.gz:``` FBP vessel reconstruction based on full-view IPs of the 3D vessel tree.
 
-```/reconsOpt:```
+```/reconsOpt/ReconFBP_xxxxx_optIter_4.nii.gz:```Optimized FBP vessel reconstruction at iteration 4 of the artifact suppression process. (The result is corresponding to ```T``` in )
 
 ```/reconsOptBinaryPercent98:```
 
