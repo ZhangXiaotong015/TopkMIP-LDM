@@ -45,7 +45,7 @@ For the complete workflow, the input is a liver-masked CT volume cropped to the 
 
 ```/reconsOptBinaryPercent98/BinaryReconFBP_xxxxx_optIter_4.nii.gz:``` Binarization of the optimized FBP vessel reconstruction based on ```T >= percentile(T, p)``` in the paper. The value of ```p``` is recommended to be in the range ```[95, 98]```.
 
-```/reconsOptNoiseCancel:```
+```/reconsOptNoiseCancel/noiseCancelConnect_xxxxx_optIter_4.nii.gz:``` Final result after noise cancellation.
 
 
 
