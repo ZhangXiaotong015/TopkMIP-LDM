@@ -31,6 +31,25 @@ For the complete workflow, the input is a liver-masked CT volume cropped to the 
 
 **This method does not work well for CT volumes with a low contrast-to-noise ratio (CNR). To handle low-CNR cases, please use our other method, [GATSegDiff](https://github.com/ZhangXiaotong015/GATSegDiff).*
 
+```Contents of the output folder```
+
+```/samples/sample_xxxxx_Seqxx.nii.gz:```
+
+```/samples/recon_xxxxx_Seqxx.nii.gz:```
+
+```/projections/Proj_xxxxx.nii.gz:``` Full-view (180 views) integral projections (IPs) of 3D vessel tree.
+
+```/recons:```
+
+```/reconsOpt:```
+
+```/reconsOptBinaryPercent98:```
+
+```/reconsOptNoiseCancel:```
+
+
+
+
 ## Apptainer/Singularity container system
 If you have a Docker image built as mentioned above, you can save the Docker image to a ```.tar``` file and convert it to a ```SIF``` file, which is compatible with Apptainer.
 ```
